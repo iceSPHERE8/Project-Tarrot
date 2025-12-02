@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
 import {
     EffectComposer,
     Vignette,
@@ -9,7 +9,7 @@ import {
     ToneMapping,
 } from "@react-three/postprocessing";
 
-import ModelCard from "@/scenes/ModelCard";
+import ModelCard from "@/scenes/TarotCard";
 
 export default function HomeScene() {
 
@@ -21,12 +21,9 @@ export default function HomeScene() {
                     <pointLight intensity={15} position={[1, 5, 1]} />
 
                     <ModelCard position={[0, 0, 0]} />
-                    <ModelCard position={[3, 0, 0]} />
-                    <ModelCard position={[-3, 0, 0]} />
 
-                    {/* <OrbitControls /> */}
-                    <ambientLight intensity={0.4} />
-                    <directionalLight position={[10, 10, 5]} intensity={1} />
+                    <OrbitControls />
+                    <Environment files={"/hdr/studio_small_04_1k.hdr"} background blur={0.6} />
 
                     <EffectComposer>
                         <Vignette
