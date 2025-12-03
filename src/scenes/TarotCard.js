@@ -7,6 +7,8 @@ import { useFrame } from "@react-three/fiber";
 
 import { addClickEntropy, getTrueRandomInt } from "@/utils/trueRandom";
 
+import { TAROT_TEXTURES } from "@/lib/tarot-textures";
+
 /* ===================================================================
    ModelCard Component
    Renders a single interactive tarot card model with flip animation
@@ -125,40 +127,37 @@ export default function ModelCard({ position }) {
     useEffect(() => {
         if (!currentCardId || currentCardId === null) return;
 
-        // Traverse only this card's cloned instance
-        sceneInstance.traverse((child) => {
-            if (child instanceof THREE.Mesh) {
-                const mat = child.material;
+        if (TAROT_TEXTURES[currentCardId]) {
+            const texture = TAROT_TEXTURES[currentCardId].clone();
 
-                if (
-                    child.name.includes("front") ||
-                    child.material.name === "card_front"
-                ) {
-                    // Load and apply new tarot card texture
-                    const texture = new THREE.TextureLoader().load(
-                        TAROT_CARD_IMAGES[currentCardId]
-                    );
-
-                    // While ieReversed is true, change the rotation
-                    if (isReversed) {
-                        texture.center.set(0.5, 0.5);
-                        texture.rotation = Math.PI;
-                    } else {
-                        texture.rotation = 0;
-                    }
-
-                    mat.map = texture;
-                    mat.metalnessMap = texture;
-                    mat.normalMap = texture;
-                    mat.metalness = 0.1;
-                    mat.roughness = 0.25;
-                    mat.normalScale.set(0.25, 0.25);
-
-                    mat.needsUpdate = true;
-                }
+            // While ieReversed is true, change the rotation
+            if (isReversed) {
+                texture.center.set(0.5, 0.5);
+                texture.rotation = Math.PI;
+            } else {
+                texture.rotation = 0;
             }
-        });
-    }, [sceneInstance, currentCardId]);
+
+            texture.needsUpdate = true;
+
+            // Traverse only this card's cloned instance
+            sceneInstance.traverse((child) => {
+                if (child instanceof THREE.Mesh) {
+                    const mat = child.material;
+
+                    if (
+                        child.name.includes("front") ||
+                        child.material.name === "card_front"
+                    ) {
+                        mat.map = texture;
+                        mat.metalness = 1.0;
+                        mat.roughness = 0.2;
+                        mat.needsUpdate = true;
+                    }
+                }
+            });
+        }
+    }, [sceneInstance, currentCardId, isReversed]);
 
     useEffect(() => {
         if (!currentCardId || currentCardId === null) return;
@@ -177,7 +176,7 @@ export default function ModelCard({ position }) {
                 if (!res.ok) throw new Error("Failed to fetch meaning");
 
                 const data = await res.json();
-                console.log(data)
+                console.log(data);
                 setCardMeaning(data);
             } catch (error) {
                 console.error("Failed to fetch meaning:", error);
@@ -196,7 +195,7 @@ export default function ModelCard({ position }) {
     return (
         <>
             <Float
-                speed={1}
+                speed={0}
                 rotationIntensity={0.7}
                 floatIntensity={0.25}
                 floatingRange={[-0.5, 0.5]}
