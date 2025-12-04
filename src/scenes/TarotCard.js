@@ -92,6 +92,7 @@ export default function ModelCard({ position }) {
 
         const newId = getTrueRandomInt(TAROT_CARD_IMAGES.length);
         const reversed = getTrueRandomInt(2) === 1;
+
         setCurrentCardId(newId);
         setIsReversed(reversed);
 
@@ -125,7 +126,7 @@ export default function ModelCard({ position }) {
        - Marks material for update to trigger re-render
        --------------------------------------------------------------- */
     useEffect(() => {
-        if (!currentCardId || currentCardId === null) return;
+        if (currentCardId == null) return;
 
         if (TAROT_TEXTURES[currentCardId]) {
             const texture = TAROT_TEXTURES[currentCardId].clone();
@@ -160,8 +161,9 @@ export default function ModelCard({ position }) {
     }, [sceneInstance, currentCardId, isReversed]);
 
     useEffect(() => {
-        if (!currentCardId || currentCardId === null) return;
-
+        if (currentCardId == null) {
+            return;
+        }
         async function fetchMeaning() {
             try {
                 const res = await fetch("/api/tarot/meaning", {
@@ -176,7 +178,7 @@ export default function ModelCard({ position }) {
                 if (!res.ok) throw new Error("Failed to fetch meaning");
 
                 const data = await res.json();
-                console.log(data);
+                // console.log(data);
                 setCardMeaning(data);
             } catch (error) {
                 console.error("Failed to fetch meaning:", error);

@@ -1,16 +1,20 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Noto_Sans_SC, Space_Mono } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/NavBar";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
+const notoSansSC = Noto_Sans_SC({
+    variable: "--font-noto-sans-sc",
+    subsets: ["chinese-simplified"],
+    weight: ["300", "400", "500", "700", "900"],
+    display: "swap",
 });
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
+const spaceMono = Space_Mono({
+    variable: "--font-space-mono",
     subsets: ["latin"],
+    weight: ["400", "700"],
+    display: "swap",
 });
 
 export const metadata = {
@@ -20,9 +24,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
+        <html lang="zh-CN" className="scroll-smooth">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={`${notoSansSC.variable} ${spaceMono.variable} antialiased`}
             >
                 <Navbar />
                 <main>{children}</main>

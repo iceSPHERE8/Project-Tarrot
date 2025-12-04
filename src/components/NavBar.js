@@ -6,27 +6,24 @@ export default function Navbar() {
     return (
         <>
             <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
-                <nav className="container mx-auto px-6 py-4">
-                    <div className="flex justify-center items-center pointer-events-auto">
+                <nav className="container mx-auto px-6 py-6">
+                    <div className="flex z-99 justify-center items-center pointer-events-auto">
                         {/* 左边导航 */}
-                        <div className="flex gap-12 z-99">
-                            <Link
-                                href="/"
-                                className="text-white text-sm font-medium"
-                            >
-                                首页
-                            </Link>
+                        <div className="text-white flex justify-center w-4/12 font-mono">
+                            <Link href="/">tarot.</Link>
+                        </div>
+                        <div className="flex gap-16 w-8/12 justify-center items-center text-[#d8d3d7] text-[12px] font-bold">
                             <Link
                                 href="/guide"
-                                className="text-white text-sm font-medium"
+                                className="underline"
                             >
-                                秘仪指南
+                                Daily Tarot
                             </Link>
-                            <Link
-                                href="/about"
-                                className="text-white text-sm font-medium"
-                            >
-                                关于我们
+                            <Link href="/guide" className="hover:underline">
+                                Tarot Guide
+                            </Link>
+                            <Link href="/about" className="hover:underline">
+                                About
                             </Link>
                         </div>
 

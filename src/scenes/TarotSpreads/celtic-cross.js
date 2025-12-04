@@ -6,7 +6,7 @@ export default function CelticCross() {
             <group position={[-2, 0, -1.25]}>
                 <ModelCard position={[0, 0, 0]} />
                 <group rotation={[0, Math.PI / 2, 0]}>
-                    <ModelCard position={[-0.5, 0.1, 0]} />
+                    <ModelCard position={[-0.5, 1.3, 0]} />
                 </group>
 
                 <ModelCard position={[0, 0, -6.25]} />

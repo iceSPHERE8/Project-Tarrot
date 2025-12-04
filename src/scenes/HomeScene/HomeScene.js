@@ -77,55 +77,53 @@ export default function HomeScene() {
 
     return (
         <>
-            <div className="fixed inset-0 bg-black">
-                <Canvas
-                    // camera={{ position: cameraPreset.position, fov: cameraPreset.fov }}
-                    dpr={[1, 2]}
-                    gl={{ antialias: true, samples: 4 }}
-                >
-                    <pointLight intensity={15} position={[3, 6, 1]} />
-                    <pointLight
-                        color={"#bad0ff"}
-                        intensity={25}
-                        position={[-3, 6, 1]}
+            <Canvas
+                // camera={{ position: cameraPreset.position, fov: cameraPreset.fov }}
+                dpr={[1, 2]}
+                gl={{ antialias: true, samples: 4 }}
+            >
+                <pointLight intensity={15} position={[3, 6, 1]} />
+                <pointLight
+                    color={"#bad0ff"}
+                    intensity={25}
+                    position={[-3, 6, 1]}
+                />
+                <pointLight
+                    color={"#efbaff"}
+                    intensity={45}
+                    position={[3, 2, 1]}
+                />
+
+                <AnimatedCamera preset={cameraPreset} />
+
+                <Suspense fallback={<LoadingPlaceholder />}>
+                    <SpreadComponent />
+                </Suspense>
+
+                {/* <OrbitControls /> */}
+                <Environment
+                    files={"/hdr/rooftop_night_2k.hdr"}
+                    environmentIntensity={1}
+                    rotation={[0, Math.PI * 2, 0]}
+                />
+
+                <EffectComposer>
+                    <Vignette
+                        offset={0.3}
+                        darkness={0.9}
+                        color="rgb(120, 50, 150)"
                     />
-                    <pointLight
-                        color={"#efbaff"}
-                        intensity={45}
-                        position={[3, 2, 1]}
+
+                    <Bloom
+                        intensity={0.8}
+                        luminanceThreshold={0.6}
+                        luminanceSmoothing={0.9}
+                        radius={0.8}
                     />
 
-                    <AnimatedCamera preset={cameraPreset} />
-
-                    <Suspense fallback={<LoadingPlaceholder />}>
-                        <SpreadComponent />
-                    </Suspense>
-
-                    {/* <OrbitControls /> */}
-                    <Environment
-                        files={"/hdr/rooftop_night_2k.hdr"}
-                        environmentIntensity={1}
-                        rotation={[0, Math.PI * 2, 0]}
-                    />
-
-                    <EffectComposer>
-                        <Vignette
-                            offset={0.3}
-                            darkness={0.9}
-                            color="rgb(120, 50, 150)"
-                        />
-
-                        <Bloom
-                            intensity={0.8}
-                            luminanceThreshold={0.6}
-                            luminanceSmoothing={0.9}
-                            radius={0.8}
-                        />
-
-                        <ToneMapping mode={1} exposure={1.2} whitePoint={5} />
-                    </EffectComposer>
-                </Canvas>
-            </div>
+                    <ToneMapping mode={1} exposure={1.2} whitePoint={5} />
+                </EffectComposer>
+            </Canvas>
         </>
     );
 }

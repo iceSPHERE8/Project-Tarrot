@@ -27,6 +27,7 @@ export async function POST(request) {
 
         const meanings = await getMeanings();
         const cardData = meanings[cardId];
+        // console.log(cardData)
 
         if (!cardData) {
             return NextResponse.json(
