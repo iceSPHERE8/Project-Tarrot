@@ -3,7 +3,7 @@ import ModelCard from "@/scenes/TarotCard";
 export default function Relationship() {
     return (
         <>
-            <group position={[0, 0, 1.8]}>
+            <group position={[0, 0, 1.5]}>
                 <ModelCard position={[-4, 0, 0]} />
                 <ModelCard position={[4, 0, 0]} />
                 <ModelCard position={[0, 0, 0]} />

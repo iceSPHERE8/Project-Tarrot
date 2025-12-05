@@ -178,7 +178,7 @@ export default function ModelCard({ position }) {
                 if (!res.ok) throw new Error("Failed to fetch meaning");
 
                 const data = await res.json();
-                // console.log(data);
+                console.log(data);
                 setCardMeaning(data);
             } catch (error) {
                 console.error("Failed to fetch meaning:", error);
@@ -197,10 +197,10 @@ export default function ModelCard({ position }) {
     return (
         <>
             <Float
-                speed={0}
-                rotationIntensity={0.7}
+                speed={0.25}
+                rotationIntensity={0.5}
                 floatIntensity={0.25}
-                floatingRange={[-0.5, 0.5]}
+                floatingRange={[-0.25, 0.25]}
             >
                 <group position={position} onClick={handleClick} ref={groupRef}>
                     <primitive object={sceneInstance} scale={2} />

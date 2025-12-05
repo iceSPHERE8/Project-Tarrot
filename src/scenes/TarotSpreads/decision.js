@@ -3,7 +3,7 @@ import ModelCard from "@/scenes/TarotCard";
 export default function Decision() {
     return (
         <>
-            <group position={[0, 0, 3.5]}>
+            <group position={[0, 0, 3]}>
                 <ModelCard position={[0, 0, 0]} />
                 <ModelCard position={[-2.5, 0, -4.5]} />
                 <ModelCard position={[-4, 0, -9]} />

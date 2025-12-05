@@ -34,9 +34,9 @@ const SPREAD_COMPONENTS = {
 const CAMERA_PRESETS = {
     daily: { position: [0, 7, 1.25], fov: 50 }, // 单张：近距离特写
     "three-card": { position: [0, 9, 2], fov: 50 }, // 三张：稍微拉远
-    "celtic-cross": { position: [0, 16, 4], fov: 60 }, // 10张：高空俯瞰
-    relationship: { position: [0, 11, 3], fov: 50 }, // 6~8张：中等距离
-    decision: { position: [0, 15, 5], fov: 50 }, // 决策：清晰对比
+    "celtic-cross": { position: [0, 16, 4], fov: 65 }, // 10张：高空俯瞰
+    relationship: { position: [0, 11, 3], fov: 55 }, // 6~8张：中等距离
+    decision: { position: [0, 15, 5], fov: 55 }, // 决策：清晰对比
 };
 
 const targetPosition = new THREE.Vector3(0, 10, 0);

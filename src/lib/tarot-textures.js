@@ -7,7 +7,6 @@ export const preloadTarotTextures = () => {
     return Promise.all(
         TAROT_CARD_IMAGES.map((url) => {
             return loader.loadAsync(url).then((texture) => {
-                texture.flipY = false;
                 return texture;
             });
         })
